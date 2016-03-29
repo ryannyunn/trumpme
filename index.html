@@ -7,11 +7,14 @@
     <script>
       $(document).ready(function(){
         $("img").click(function(){
-          var str = ""
+          $("img").addClass("spinner");
+          var str = "";
+          $(".shit").html(str);
           $.getJSON("http://cooper-union-twitter-proxy.herokuapp.com/twitter/search?q=from:realdonaldtrump&count=150", function(response){
             response.error.statuses.forEach(function(status){
               str += ("<a href='https://twitter.com/realDonaldTrump/status/" + status.id_str + "' target='_blank'>" + status.text + " </a>");
             })
+            $("img").removeClass("spinner");
             $(".shit").html(str);
           });
         });
