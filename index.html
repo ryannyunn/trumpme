@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TRUMP ME</title>
+    <link rel="stylesheet" href="main.css">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        $("img").click(function(){
+          var str = ""
+          $.getJSON("http://cooper-union-twitter-proxy.herokuapp.com/twitter/search?q=from:realdonaldtrump&count=150", function(response){
+            response.error.statuses.forEach(function(status){
+              str += ("<a href='https://twitter.com/realDonaldTrump/status/" + status.id_str + "' target='_blank'>" + status.text + " </a>");
+            })
+            $(".shit").html(str);
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <p class="shit"></p>
+    <img src="https://lh3.googleusercontent.com/kMP05B4UUGphEbLz0Xo-1pPgOfLG2Ezowu-e1YFEyNSh43QD_6gFNgi3IyWbeH4y7U4=w170">
+  </body>
+</html>
